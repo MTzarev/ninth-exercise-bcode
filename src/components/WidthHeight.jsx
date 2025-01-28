@@ -5,9 +5,14 @@ function WidthHeight () {
     const [height, setHeight] = useState(window.innerHeight)
 
 useEffect(()=>{
-    window.addEventListener("resize", handleResize)
+    window.addEventListener("resize", handleResize);
+
+    return ()=> window.removeEventListener("resize", handleResize)
 
 },[])
+useEffect(()=>{
+    document.title=`Size: ${width} x ${height}`;
+},[width, height])
 
 
 function handleResize(){
